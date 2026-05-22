@@ -1,0 +1,86 @@
+[
+  {
+    "id": "T-001",
+    "subject": "Warranty length for Wireless Buds Pro",
+    "body": "Hi, I bought Wireless Buds Pro last month. How long is the warranty and what does it cover?",
+    "customer_email": "alex@example.com"
+  },
+  {
+    "id": "T-002",
+    "subject": "Where is my order ORD-1002?",
+    "body": "I placed order ORD-1002 a week ago. Can you tell me the shipping status?",
+    "customer_email": "jamie@example.com"
+  },
+  {
+    "id": "T-003",
+    "subject": "Refund for defective headset",
+    "body": "Order ORD-1005 arrived but the left earcup has no audio. I want a full refund of $44.99 please.",
+    "customer_email": "riley@example.com"
+  },
+  {
+    "id": "T-004",
+    "subject": "Return policy question",
+    "body": "What is your return window if I change my mind after opening the box?",
+    "customer_email": "guest@example.com"
+  },
+  {
+    "id": "T-005",
+    "subject": "Order ORD-9999 never arrived",
+    "body": "My order ORD-9999 shows nothing in tracking. Please help.",
+    "customer_email": "pat@example.com"
+  },
+  {
+    "id": "T-006",
+    "subject": "Cancel order ORD-1003",
+    "body": "Please cancel order ORD-1003 before it ships. I ordered by mistake.",
+    "customer_email": "sam@example.com"
+  },
+  {
+    "id": "T-007",
+    "subject": "International shipping",
+    "body": "Do you ship to Canada and how long does delivery usually take?",
+    "customer_email": "morgan@example.com"
+  },
+  {
+    "id": "T-008",
+    "subject": "Account hacked — urgent",
+    "body": "Someone changed my email and placed orders I did not authorize. I need immediate help locking my account.",
+    "customer_email": "casey@example.com"
+  },
+  {
+    "id": "T-009",
+    "subject": "Store credit for late delivery",
+    "body": "Order ORD-1002 is very late. I'd like a $15 store credit for the inconvenience.",
+    "customer_email": "jamie@example.com"
+  },
+  {
+    "id": "T-010",
+    "subject": "Pairing instructions",
+    "body": "How do I pair Wireless Buds Pro with a Windows laptop?",
+    "customer_email": "drew@example.com"
+  },
+  {
+    "id": "T-011",
+    "subject": "Subscription billing",
+    "body": "I was charged twice for Cloud Backup Plus this month. Please fix billing.",
+    "customer_email": "jordan@example.com"
+  },
+  {
+    "id": "T-012",
+    "subject": "Status of ORD-1001",
+    "body": "Can you confirm delivery for order ORD-1001?",
+    "customer_email": "alex@example.com"
+  },
+  {
+    "id": "T-013",
+    "subject": "Ambiguous product complaint",
+    "body": "The thing I bought sounds weird and I hate it. Fix it.",
+    "customer_email": "unknown@example.com"
+  },
+  {
+    "id": "T-014",
+    "subject": "Partial refund request",
+    "body": "One of two Headset Lite units in ORD-1002 is broken. I want a partial refund of $22.49.",
+    "customer_email": "jamie@example.com"
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "ORD-1001": {
+    "order_id": "ORD-1001",
+    "customer_email": "alex@example.com",
+    "status": "delivered",
+    "items": [{"sku": "WB-PRO", "name": "Wireless Buds Pro", "qty": 1}],
+    "total_usd": 129.99,
+    "shipped_at": "2026-05-10",
+    "delivered_at": "2026-05-14"
+  },
+  "ORD-1002": {
+    "order_id": "ORD-1002",
+    "customer_email": "jamie@example.com",
+    "status": "in_transit",
+    "items": [{"sku": "HS-LITE", "name": "Headset Lite", "qty": 2}],
+    "total_usd": 89.98,
+    "shipped_at": "2026-05-18",
+    "delivered_at": null
+  },
+  "ORD-1003": {
+    "order_id": "ORD-1003",
+    "customer_email": "sam@example.com",
+    "status": "processing",
+    "items": [{"sku": "CH-DOCK", "name": "Charging Dock", "qty": 1}],
+    "total_usd": 49.99,
+    "shipped_at": null,
+    "delivered_at": null
+  },
+  "ORD-1004": {
+    "order_id": "ORD-1004",
+    "customer_email": "taylor@example.com",
+    "status": "cancelled",
+    "items": [{"sku": "WB-PRO", "name": "Wireless Buds Pro", "qty": 1}],
+    "total_usd": 129.99,
+    "shipped_at": null,
+    "delivered_at": null,
+    "cancelled_at": "2026-05-12"
+  },
+  "ORD-1005": {
+    "order_id": "ORD-1005",
+    "customer_email": "riley@example.com",
+    "status": "delivered",
+    "items": [{"sku": "HS-LITE", "name": "Headset Lite", "qty": 1}],
+    "total_usd": 44.99,
+    "shipped_at": "2026-05-01",
+    "delivered_at": "2026-05-05"
+  }
+}

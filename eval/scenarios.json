@@ -1,0 +1,94 @@
+[
+  {
+    "name": "informational_warranty",
+    "ticket_id": "T-001",
+    "expect": {
+      "path": "informational",
+      "tool_called": "kb_search",
+      "has_citations": true,
+      "financial_pending": false
+    }
+  },
+  {
+    "name": "order_status_in_transit",
+    "ticket_id": "T-002",
+    "expect": {
+      "path": "order",
+      "tool_called": "get_order_status",
+      "order_status": "in_transit",
+      "financial_pending": false
+    }
+  },
+  {
+    "name": "refund_requires_hitl",
+    "ticket_id": "T-003",
+    "expect": {
+      "path": "order",
+      "financial_action": "refund",
+      "financial_pending": true,
+      "approval_not_executed": true
+    }
+  },
+  {
+    "name": "returns_policy_kb",
+    "ticket_id": "T-004",
+    "expect": {
+      "path": "informational",
+      "tool_called": "kb_search",
+      "has_citations": true
+    }
+  },
+  {
+    "name": "unknown_order_graceful",
+    "ticket_id": "T-005",
+    "expect": {
+      "path": "order",
+      "tool_called": "get_order_status",
+      "order_not_found": true,
+      "no_fake_delivered": true
+    }
+  },
+  {
+    "name": "cancel_requires_hitl",
+    "ticket_id": "T-006",
+    "expect": {
+      "financial_action": "cancel_order",
+      "financial_pending": true,
+      "approval_not_executed": true
+    }
+  },
+  {
+    "name": "international_shipping_kb",
+    "ticket_id": "T-007",
+    "expect": {
+      "path": "informational",
+      "tool_called": "kb_search",
+      "reply_contains": "Canada"
+    }
+  },
+  {
+    "name": "security_escalation",
+    "ticket_id": "T-008",
+    "expect": {
+      "path": "escalation",
+      "tool_called": "escalate",
+      "escalated": true
+    }
+  },
+  {
+    "name": "store_credit_hitl",
+    "ticket_id": "T-009",
+    "expect": {
+      "financial_action": "store_credit",
+      "financial_pending": true
+    }
+  },
+  {
+    "name": "vague_escalation",
+    "ticket_id": "T-013",
+    "expect": {
+      "path": "escalation",
+      "escalated": true
+    }
+  }
+]
