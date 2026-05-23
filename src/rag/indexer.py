@@ -1,5 +1,3 @@
-"""Chunk, embed (TF-IDF), and retrieve knowledge-base passages."""
-
 from __future__ import annotations
 
 import re

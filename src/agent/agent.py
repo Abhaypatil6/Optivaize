@@ -1,5 +1,3 @@
-"""Support resolution agent orchestrator."""
-
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -20,22 +18,22 @@ class AgentResult:
 
 def resolve_ticket(ticket: dict) -> AgentResult:
     log: list[str] = []
-    log.append("STEP 1 — Planner: classifying ticket and decomposing sub-tasks")
+    log.append("Planner")
     plan = plan_ticket(ticket)
-    log.append(f"  Path: {plan.path.value}, confidence: {plan.confidence}")
-    log.append(f"  Sub-tasks: {[s.description for s in plan.subtasks]}")
-    log.append(f"  Rationale: {plan.rationale}")
+    log.append(f"  path={plan.path.value} confidence={plan.confidence}")
+    log.append(f"  tasks: {[s.description for s in plan.subtasks]}")
+    log.append(f"  note: {plan.rationale}")
 
-    log.append("STEP 2 — Executor: running tools per plan")
+    log.append("Tools")
     execution = execute_plan(ticket, plan)
     for t in execution.traces:
-        log.append(f"  Tool {t.tool}({t.input}) -> ok={t.output.get('ok', True)}")
+        log.append(f"  {t.tool}({t.input}) ok={t.output.get('ok', True)}")
 
     if execution.approval_draft:
-        log.append("STEP 3 — HITL: financial action draft created (PENDING approval)")
+        log.append("Approval (pending — not executed)")
         log.append(f"  {execution.approval_draft.to_dict()}")
 
-    log.append("STEP 4 — Composer: drafting customer reply")
+    log.append("Reply")
     reply = compose_reply(ticket, execution)
 
     return AgentResult(

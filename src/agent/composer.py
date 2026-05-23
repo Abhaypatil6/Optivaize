@@ -1,5 +1,3 @@
-"""Compose customer-facing reply from execution evidence."""
-
 from __future__ import annotations
 
 from src.agent.executor import ExecutionState
@@ -13,11 +11,10 @@ def _mock_reply(ticket: dict, state: ExecutionState) -> str:
     if state.approval_draft:
         d = state.approval_draft
         parts.append(
-            f"\n[ACTION PENDING HUMAN APPROVAL] Proposed {d.action} ({d.amount_or_scope}). "
-            f"Justification: {d.justification}"
+            f"\nWe're preparing a {d.action} for {d.amount_or_scope} — still waiting on approval."
         )
-        parts.append(f"Evidence: {d.evidence_summary}")
-        parts.append("A support specialist will confirm before anything is processed.")
+        parts.append(f"Context: {d.evidence_summary}")
+        parts.append("Nothing has been charged or refunded yet.")
 
     if state.escalation:
         parts.append(
@@ -50,10 +47,9 @@ def _mock_reply(ticket: dict, state: ExecutionState) -> str:
     return "\n".join(parts)
 
 
-COMPOSE_SYSTEM = """Write a concise, empathetic customer-support reply.
-Use only facts from the provided evidence. Cite KB sources as [doc_id] Title.
-If order not found, say so clearly — do not invent order data.
-If approval is pending, state that clearly and do not say the refund/credit/cancel was completed."""
+COMPOSE_SYSTEM = """Write a short support email. Only use the evidence given.
+Cite KB as [doc_id] Title. If the order lookup failed, say so — don't invent status.
+If approval is pending, say we're waiting on a human — don't claim the refund/credit/cancel is done."""
 
 
 def compose_reply(ticket: dict, state: ExecutionState) -> str:

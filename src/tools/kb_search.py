@@ -1,5 +1,3 @@
-"""RAG tool: search product knowledge base."""
-
 from __future__ import annotations
 
 from src.config import KB_DIR
@@ -17,14 +15,6 @@ def _get_index() -> KnowledgeBaseIndex:
 
 
 def kb_search(query: str, top_k: int = 3) -> dict:
-    """
-    Retrieve relevant KB passages for a query.
-
-    Returns:
-        ok: bool
-        results: list of {doc_id, title, passage, score}
-        error: optional message (e.g. empty results)
-    """
     try:
         hits: list[RetrievalResult] = _get_index().search(query, top_k=top_k)
     except Exception as exc:

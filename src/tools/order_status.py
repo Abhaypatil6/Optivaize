@@ -1,5 +1,3 @@
-"""Mock order-status API with unknown-order failure mode."""
-
 from __future__ import annotations
 
 import json
@@ -23,9 +21,6 @@ def extract_order_ids(text: str) -> list[str]:
 
 
 def get_order_status(order_id: str) -> dict:
-    """
-    Look up order by ID. Unknown IDs return ok=False (no hallucination).
-    """
     order_id = order_id.upper().strip()
     orders = _load_orders()
     record = orders.get(order_id)

@@ -1,5 +1,3 @@
-"""Route ticket to human queue with structured reason."""
-
 from __future__ import annotations
 
 from datetime import datetime, timezone

@@ -1,5 +1,3 @@
-"""Evaluation harness: run scripted scenarios with pass/fail report."""
-
 from __future__ import annotations
 
 import json
@@ -7,7 +5,6 @@ import os
 import sys
 from pathlib import Path
 
-# Ensure repo root on path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
@@ -96,7 +93,7 @@ def main() -> int:
     clear_escalation_log()
     tickets = load_tickets()
     scenarios = load_scenarios()
-    table = Table(title="Support Agent Evaluation")
+    table = Table(title="eval")
     table.add_column("Scenario")
     table.add_column("Status")
     table.add_column("Notes")

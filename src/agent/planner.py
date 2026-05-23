@@ -1,5 +1,3 @@
-"""Explicit planner step: classify ticket and decompose sub-tasks."""
-
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -41,25 +39,22 @@ class Plan:
     escalate_reason: str | None = None
 
 
-PLANNER_SYSTEM = """You are a customer-support planning module.
-Decompose the ticket into explicit sub-tasks. Choose exactly one resolution path:
-- informational: product/policy questions answerable from KB
-- order: needs order status lookup
-- escalation: fraud, legal, safety, account compromise, or too vague/confident < 0.5
+PLANNER_SYSTEM = """You plan how to handle a support ticket. Return JSON only.
 
-Detect financial actions (refund, store_credit, cancel_order) even if path is order/informational.
-Return JSON:
+Pick one path: informational (KB), order (lookup ORD- ids), or escalation (fraud, security, legal, or confidence below 0.5).
+
+Flag financial_action when the customer wants refund, store_credit, or cancel_order.
+
 {
   "path": "informational|order|escalation",
   "confidence": 0.0-1.0,
-  "rationale": "short",
+  "rationale": "one line",
   "order_ids": ["ORD-..."],
   "financial_action": "refund|store_credit|cancel_order|none",
   "proposed_amount_usd": number or null,
-  "escalate_reason": "string or null",
+  "escalate_reason": null or string,
   "subtasks": [{"id":"1","description":"...","tool":"kb_search|get_order_status|escalate|compose_reply|null"}]
-}
-Rules: refunds/credits/cancellations must set financial_action; never skip subtasks."""
+}"""
 
 
 def _extract_dollar_amount(text: str) -> float | None:

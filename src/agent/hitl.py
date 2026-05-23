@@ -1,5 +1,3 @@
-"""Human-in-the-loop drafts for financial actions — never auto-approved."""
-
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -63,8 +61,7 @@ def build_approval_draft(
 
 
 def request_human_approval(draft: ApprovalDraft, auto_approve: bool = False) -> ApprovalDraft:
-    """Pause for explicit human approval. Never auto-approves financial actions."""
     if auto_approve:
-        raise ValueError("Financial actions cannot be auto-approved")
+        raise ValueError("can't auto-approve money actions")
     draft.status = ApprovalStatus.PENDING
     return draft

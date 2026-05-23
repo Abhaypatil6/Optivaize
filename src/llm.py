@@ -1,5 +1,3 @@
-"""LLM providers: Groq (default) or Google Gemini — no OpenAI required."""
-
 from __future__ import annotations
 
 import json
@@ -13,7 +11,6 @@ load_dotenv()
 
 Provider = Literal["groq", "gemini"]
 
-# Best free-tier defaults (May 2026): Groq Llama 3.3 70B; Gemini 2.0 Flash
 DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
 DEFAULT_GEMINI_MODEL = "gemini-2.0-flash"
 
@@ -39,10 +36,7 @@ def get_model() -> str:
 def _groq_chat(messages: list[dict], temperature: float, json_mode: bool) -> str:
     api_key = os.getenv("GROQ_API_KEY")
     if not api_key:
-        raise RuntimeError(
-            "GROQ_API_KEY not set. Get a free key at https://console.groq.com — "
-            "or set MOCK_LLM=1 for offline eval."
-        )
+        raise RuntimeError("GROQ_API_KEY missing in .env (or set MOCK_LLM=1)")
 
     import httpx
 
@@ -72,10 +66,7 @@ def _groq_chat(messages: list[dict], temperature: float, json_mode: bool) -> str
 def _gemini_chat(messages: list[dict], temperature: float, json_mode: bool) -> str:
     api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
     if not api_key:
-        raise RuntimeError(
-            "GEMINI_API_KEY (or GOOGLE_API_KEY) not set. Get a free key at "
-            "https://aistudio.google.com/apikey — or set MOCK_LLM=1 for offline eval."
-        )
+        raise RuntimeError("GEMINI_API_KEY missing in .env (or set MOCK_LLM=1)")
 
     from google import genai
     from google.genai import types
