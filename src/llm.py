@@ -19,6 +19,24 @@ def use_mock_llm() -> bool:
     return os.getenv("MOCK_LLM", "0").strip().lower() in ("1", "true", "yes")
 
 
+def has_live_api_key() -> bool:
+    if get_provider() == "groq":
+        return bool(os.getenv("GROQ_API_KEY", "").strip())
+    return bool((os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or "").strip())
+
+
+def ensure_live_llm() -> None:
+    """Demo / live runs need a provider key in .env."""
+    if use_mock_llm():
+        return
+    if has_live_api_key():
+        return
+    provider = get_provider()
+    if provider == "groq":
+        raise RuntimeError("Add GROQ_API_KEY to .env for live demo (get one at console.groq.com)")
+    raise RuntimeError("Add GEMINI_API_KEY to .env for live demo")
+
+
 def get_provider() -> Provider:
     name = os.getenv("LLM_PROVIDER", "groq").strip().lower()
     if name not in ("groq", "gemini"):

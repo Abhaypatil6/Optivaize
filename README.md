@@ -32,16 +32,17 @@ For Gemini, switch `LLM_PROVIDER=gemini` and set `GEMINI_API_KEY`. If you hit Gr
 ## Run
 
 ```powershell
-# tests, no API key
-$env:MOCK_LLM="1"
+# eval — always offline, no API key (ignores MOCK_LLM in .env)
 python -m eval.run_eval
 
-# one ticket
-python main.py --ticket-id T-002
-
-# refund + unknown order + escalation
+# demo for recordings — always uses Groq/Gemini from .env
 python main.py --demo
+
+# one ticket (follows .env: MOCK_LLM=0 + key = live, MOCK_LLM=1 = offline)
+python main.py --ticket-id T-002
 ```
+
+Put `GROQ_API_KEY` in `.env` before `--demo`. Eval never touches it.
 
 Makefile targets: `make install`, `make eval`, `make demo`.
 

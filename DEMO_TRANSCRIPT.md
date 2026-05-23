@@ -1,16 +1,19 @@
 # Demo notes
 
-Three runs that show planning, tool use, and the refund approval gate. Reproduce with:
+**Recording setup:** eval offline (no key), demo live (Groq/Gemini from `.env`).
 
 ```powershell
+cd C:\Users\Abhay\Desktop\Optivaze
 .\venv\Scripts\Activate.ps1
-$env:MOCK_LLM="1"
-python main.py --ticket-id T-003
-python main.py --ticket-id T-005
-python main.py --ticket-id T-008
+
+# 1) tests — no API key
+python -m eval.run_eval
+
+# 2) demo — needs GROQ_API_KEY in .env (forces live LLM)
+python main.py --demo
 ```
 
-Or `python main.py --demo` for all three. For a screen capture, walk through those commands and scroll the terminal panels.
+You'll see `eval mode: offline` then `Live LLM — groq / llama-3.3-70b-versatile (API key from .env)` on the demo.
 
 ---
 

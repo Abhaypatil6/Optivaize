@@ -8,7 +8,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-os.environ.setdefault("MOCK_LLM", "1")
+# Eval is always offline — no API key, no Groq/Gemini calls.
+os.environ["MOCK_LLM"] = "1"
 
 from rich.console import Console
 from rich.table import Table
@@ -90,6 +91,7 @@ def check_scenario(result, expect: dict) -> tuple[bool, list[str]]:
 
 
 def main() -> int:
+    console.print("[dim]eval mode: offline (MOCK_LLM=1, no API calls)[/dim]\n")
     clear_escalation_log()
     tickets = load_tickets()
     scenarios = load_scenarios()
