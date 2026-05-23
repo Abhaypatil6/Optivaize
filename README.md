@@ -108,6 +108,8 @@ Should print `10/10 scenarios passed`.
 
 ## Repo layout
 
+All runnable code lives under `src/`. (Older draft folders were removed to avoid confusion.)
+
 ```
 main.py              CLI
 src/agent/           planner, executor, hitl, composer
