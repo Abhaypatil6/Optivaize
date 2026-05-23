@@ -62,6 +62,15 @@ Return JSON:
 Rules: refunds/credits/cancellations must set financial_action; never skip subtasks."""
 
 
+def _extract_dollar_amount(text: str) -> float | None:
+    import re
+
+    matches = re.findall(r"\$(\d+(?:\.\d{2})?)", text)
+    if matches:
+        return float(matches[-1])
+    return None
+
+
 def _mock_plan(ticket: dict) -> dict[str, Any]:
     text = f"{ticket.get('subject', '')} {ticket.get('body', '')}".lower()
     order_ids = extract_order_ids(text)
@@ -82,12 +91,7 @@ def _mock_plan(ticket: dict) -> dict[str, Any]:
         }
 
     if "refund" in text or "partial refund" in text:
-        amt = None
-        import re
-
-        m = re.search(r"\$?(\d+\.?\d*)", ticket.get("body", ""))
-        if m:
-            amt = float(m.group(1))
+        amt = _extract_dollar_amount(ticket.get("body", ""))
         return {
             "path": "order" if order_ids else "informational",
             "confidence": 0.85,
@@ -104,10 +108,7 @@ def _mock_plan(ticket: dict) -> dict[str, Any]:
         }
 
     if "store credit" in text or "credit" in text and "$" in text:
-        import re
-
-        m = re.search(r"\$?(\d+\.?\d*)", ticket.get("body", ""))
-        amt = float(m.group(1)) if m else 15.0
+        amt = _extract_dollar_amount(ticket.get("body", "")) or 15.0
         return {
             "path": "order",
             "confidence": 0.8,
